@@ -8,7 +8,9 @@
 #include "UObject/UnrealType.h"
 #include "UObject/ScriptMacros.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
+
 #include "StructBox.h"
+
 #include "StructBoxLibrary.generated.h"
 
 USTRUCT(BlueprintInternalUseOnly)
@@ -20,7 +22,7 @@ struct FStubStruct
 };
 
 UCLASS()
-class UStructBoxLibrary : public UBlueprintFunctionLibrary
+class STRUCTBOX_API UStructBoxLibrary : public UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
 
@@ -73,7 +75,7 @@ public:
 		if (SrcStructAddr && SrcStructProperty)
 		{
 			StructBox.ScriptStruct = SrcStructProperty->Struct;
-			// TODO: CHECK compatibility 
+			// #todo CHECK compatibility 
 			StructBox.Create(StructBox.ScriptStruct);
 			StructBox.ScriptStruct->CopyScriptStruct(StructBox.StructMemory, SrcStructAddr);
 		}

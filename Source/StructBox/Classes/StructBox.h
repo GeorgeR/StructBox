@@ -5,10 +5,11 @@
 #include "CoreMinimal.h"
 #include "UObject/ObjectMacros.h"
 #include "UObject/Class.h"
+
 #include "StructBox.generated.h"
 
 USTRUCT(BlueprintType)
-struct FStructBox
+struct STRUCTBOX_API FStructBox
 {
 	GENERATED_USTRUCT_BODY()
 

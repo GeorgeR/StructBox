@@ -1,5 +1,5 @@
 // Copyright 1998-2018 Epic Games, Inc. All Rights Reserved.
-using System.IO;
+
 using UnrealBuildTool;
 
 namespace UnrealBuildTool.Rules
@@ -8,9 +8,10 @@ namespace UnrealBuildTool.Rules
 	{
 		public StructBox(ReadOnlyTargetRules Target) : base(Target)
 		{
-			PublicDependencyModuleNames.AddRange(
-				new string[]
-				{
+            PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
+
+            PublicDependencyModuleNames.AddRange(
+				new string[] {
 					"Core",
 					"CoreUObject",
 					"Engine"
