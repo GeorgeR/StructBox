@@ -3,24 +3,23 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UObject/ObjectMacros.h"
 #include "UObject/Class.h"
 
 #include "StructBox.generated.h"
 
 USTRUCT(BlueprintType)
-struct STRUCTBOX_API FStructBox
+struct FStructBox
 {
-	GENERATED_USTRUCT_BODY()
+	GENERATED_BODY()
 
+public:
 	UPROPERTY()
 	UScriptStruct* ScriptStruct;
 
 	uint8* StructMemory;
 
-	FStructBox() 
-		: StructMemory(nullptr)
-	{}
+    FStructBox();
+	~FStructBox();
 
 	bool IsValid() const
 	{
@@ -29,8 +28,6 @@ struct STRUCTBOX_API FStructBox
 
 	void Destroy(UScriptStruct* ActualStruct);
 	void Create(UScriptStruct* ActualStruct);
-
-	~FStructBox();
 
 	bool Serialize(FArchive& Ar);
 
@@ -41,7 +38,7 @@ struct STRUCTBOX_API FStructBox
 	FStructBox& operator=(const FStructBox& Other);
 
 private:
-	FStructBox(const FStructBox&);
+	FStructBox(const FStructBox&) = default;
 };
 
 template<>
@@ -53,7 +50,6 @@ struct TStructOpsTypeTraits<FStructBox> : public TStructOpsTypeTraitsBase2<FStru
 		WithCopy = true,
 		WithIdentical = true,
 		WithAddStructReferencedObjects = true,
-		WithSerializer = true
-		// TODO.. WithPostSerialize etc..
+		WithSerializer = true,
 	};
 };

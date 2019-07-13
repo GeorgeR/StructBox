@@ -16,6 +16,10 @@ void FStructBox::Destroy(UScriptStruct* ActualStruct)
 	}
 }
 
+FStructBox::FStructBox()
+    : ScriptStruct(nullptr),    
+    StructMemory(nullptr) { }
+
 FStructBox::~FStructBox()
 {
 	ensure(ScriptStruct || !StructMemory);
