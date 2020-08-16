@@ -32,14 +32,14 @@ public:
 
 	DECLARE_FUNCTION(execGetStructFromBox)
 	{
-		PARAM_PASSED_BY_REF(StructBox, UStructProperty, FStructBox);
+		PARAM_PASSED_BY_REF(StructBox, FStructProperty, FStructBox);
 
 		Stack.MostRecentPropertyAddress = nullptr;
 		Stack.MostRecentProperty = nullptr;
 
-		Stack.StepCompiledIn<UStructProperty>(NULL);
+		Stack.StepCompiledIn<FStructProperty>(nullptr);
 		void* DstStructAddr = Stack.MostRecentPropertyAddress;
-		auto DstStructProperty = Cast<UStructProperty>(Stack.MostRecentProperty);
+		auto DstStructProperty = CastField<FStructProperty>(Stack.MostRecentProperty);
 
 		bool bResult = false;
 		if (DstStructAddr && DstStructProperty && StructBox.IsValid())
@@ -61,14 +61,14 @@ public:
 
 	DECLARE_FUNCTION(execSetStructInBox)
 	{
-		PARAM_PASSED_BY_REF(StructBox, UStructProperty, FStructBox);
+		PARAM_PASSED_BY_REF(StructBox, FStructProperty, FStructBox);
 
 		Stack.MostRecentPropertyAddress = nullptr;
 		Stack.MostRecentProperty = nullptr;
 
-		Stack.StepCompiledIn<UStructProperty>(NULL);
+		Stack.StepCompiledIn<FStructProperty>(nullptr);
 		void* SrcStructAddr = Stack.MostRecentPropertyAddress;
-		auto SrcStructProperty = Cast<UStructProperty>(Stack.MostRecentProperty);
+		auto SrcStructProperty = CastField<FStructProperty>(Stack.MostRecentProperty);
 
 		StructBox.Destroy(StructBox.ScriptStruct);
 
